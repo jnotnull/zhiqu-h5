@@ -4,7 +4,8 @@
   },
   "dependencies": {
     "react": "^15.1.0",
-    "react-dom": "^15.1.0"
+    "react-dom": "^15.1.0",
+    "path-to-regexp": "^1.5.3"
   },
   "devDependencies": {
     "atool-build": "^0.7.6",

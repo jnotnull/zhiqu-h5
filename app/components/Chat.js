@@ -5,11 +5,11 @@ const propTypes = {
   username: PropTypes.string
 };
 
-const FriendThumbnail = ({ name, username }) => (
+const Chat = ({ name, username }) => (
   <div className="friend-thumbnail">
     <h4>{name} <span className="username">{username}</span></h4>
   </div>
 );
 
-FriendThumbnail.propTypes = propTypes;
-export default FriendThumbnail;
+Chat.propTypes = propTypes;
+export default Chat;
