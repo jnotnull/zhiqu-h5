@@ -1,11 +1,10 @@
 import React, { PropTypes } from 'react';
 import Chat from './Chat';
+import styles from './index.less';
 
 const propTypes = {
-  friends: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    username: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired
+  chatlist: PropTypes.arrayOf(PropTypes.shape({
+    content: PropTypes.string.isRequired
   }))
 };
 
@@ -14,10 +13,10 @@ const defaultProps = {
 };
 
 const ChatList = ({ chatlist }) => (
-  <ul className="friend-list">
+  <ul className={styles.directChatMessages}>
     {chatlist.map(chat => (
-      <li key={chat.id}>
-        <Chat username={chat.username} name={chat.name} />
+      <li key={chat.row_id.mostSignificantBits}>
+        <Chat chat={chat} />
       </li>
     ))}
   </ul>

@@ -64,7 +64,6 @@ app.model({
 
 //带绑定的view
 const Appview = (props) => {
-  console.log(props.chatlist);
   return (
     <div className={styles.app}>
       <ChatList chatlist={props.chatlist} />
