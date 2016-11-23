@@ -1,33 +1,20 @@
 import React from 'react';
-import {
-  Router,
-  Route
-} from './common/router';
+import { Router, Route, useRouterHistory, routerRedux } from './common/router';
 
-export default function({
-  history,
-  app
-}) {
+export default function({ history, app }) {
 
-  const routes = [{
-    path: '/',
-    name: 'app',
-    getComponent(nextState, cb) {
-      require.ensure([], require => {
-        app.model(require('./models/app'));
-        cb(null, require('./routes/App'));
-      });
+  const routes = [
+    {
+      path: '/essence/:id',
+      name: 'essence',
+      getComponent(nextState, cb) {
+        require.ensure([], require => {
+          app.model(require('./models/essence'));
+          cb(null, require('./routes/essence'));
+        });
+      },
     },
-  }, {
-    path: '/profile',
-    name: 'profile',
-    getComponent(nextState, cb) {
-      require.ensure([], require => {
-        app.model(require('./models/profile'));
-        cb(null, require('./routes/Profile'));
-      });
-    },
-  }, ];
+  ];
 
   return <Router history={ history } routes={ routes } />;
 }
