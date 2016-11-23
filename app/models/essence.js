@@ -1,25 +1,6 @@
-import './index.html';
-
-// 基础库
-import React from 'react';
-import dva from '../src/index';
 import pathToRegexp from 'path-to-regexp';
 
-// 公共库
-import { connect } from './common/index';
-import { Router, Route, useRouterHistory, routerRedux } from './common/router';
-import fetch from './common/fetch';
-import {isMeet} from './common/utils';
-
-// 本地库
-import styles from './index.less';
-import ChatList from './components/ChatList';
-
-// 1. Initialize
-const app = dva();
-
-// 2. Model
-app.model({
+export default {
   namespace: 'essence',
   state: {
     query: '',
@@ -136,34 +117,4 @@ app.model({
       return { ...state, chatlist: state.chatlist.concat(payload) };
     },
   },
-});
-
-//带绑定的view
-const Appview = (props) => {
-  return (
-    <div className={styles.app}>
-      <ChatList chatlist={props.chatlist} />
-
-      <div id="loading" className={styles.loading}><span></span>客官，正在加载，请稍等...</div>
-      <div className={styles.loading}><span></span>客官，没有更多了/(ㄒoㄒ)/~~</div>
-    </div>
-  );
-} 
-
-const App = connect(
-({ essence }) => ({
-  query: essence.query,
-  chatlist: essence.chatlist,
-})
-)(Appview);
-
-// 4. Router
-app.router(({ history }) =>
-  <Router history={history}>
-    <Route path="/" component={App} />
-    <Route path="/essence/:id" component={App} />
-  </Router>
-);
-
-// 5. Start
-app.start('#root');
+}

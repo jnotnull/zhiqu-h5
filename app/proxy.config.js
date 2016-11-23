@@ -283,7 +283,9 @@ module.exports = {
   '/api/search': function (req, res) {
     setTimeout(function() {
       const query = req.query.q;
-      const results = chatlist;
+      const currentpage = req.query.currentpage;
+
+      const results = chatlist.slice((req.query.currentpage - 1) * 5 , req.query.currentpage * 5);
       res.json({
         success: true,
         data: results,

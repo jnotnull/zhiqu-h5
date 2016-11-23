@@ -12,13 +12,31 @@ const defaultProps = {
   chatlist: []
 };
 
+var lastNickname = "";
+var rightClass = false;
+
 const ChatList = ({ chatlist }) => (
   <ul className={styles.directChatMessages}>
-    {chatlist.map(chat => (
-      <li key={chat.row_id.mostSignificantBits}>
-        <Chat chat={chat} />
+    {chatlist.map( (chat) => {
+      var nickname = chat.nickname;
+
+      // flat数据
+      if (typeof nickname == 'undefined') {
+        nickname = "";
+      }
+
+      // 进行取反
+      if (nickname != lastNickname) {
+        rightClass = !rightClass;
+      }
+
+      // 重置给下次使用
+      lastNickname = nickname;
+
+      return <li key={chat.row_id.mostSignificantBits}>
+        <Chat chat={chat} rightclass={rightClass}/>
       </li>
-    ))}
+    })}
   </ul>
 );
 
