@@ -1,4 +1,5 @@
 import pathToRegexp from 'path-to-regexp';
+import {isMeet} from '../common/utils';
 
 export default {
   namespace: 'essence',
@@ -42,9 +43,6 @@ export default {
   },
   effects: {
     setQuery: [function*({ payload }, { put, call, select }) {
-      yield call(routerRedux.push, {
-        query: { q: payload || '' },
-      });
 
       // 获得当前页码
       const currentpage = yield select(({ essence }) => essence.currentpage);
@@ -116,5 +114,5 @@ export default {
     setChatlist(state, { payload }) {
       return { ...state, chatlist: state.chatlist.concat(payload) };
     },
-  },
+  }
 }
